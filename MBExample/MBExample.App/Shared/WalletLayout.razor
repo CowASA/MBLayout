@@ -1,19 +1,7 @@
 ﻿@inherits LayoutComponentBase
-
+ <MainLayout />
 <MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudSpacer />
-@*        <LoginDisplay />
-        <LanguageSwitcher />*@
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-    </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
-        </MudDrawerHeader>
-        <NavMenu />
-    </MudDrawer>
+   
     <MudMainContent>
         @*Container for wallet address text box*@
         <MudContainer Class="mt-4" MaxWidth="MaxWidth.Medium">
@@ -40,7 +28,7 @@
                     </MudPaper>
                 </MudItem>
             </MudGrid>
-            <MudGrid Spacing="2">
+            <MudGrid Spacing="2" Class="mt-2">
                 <MudItem>
                     <MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
                         <MudText Color=Color.Success>Box 3</MudText>
@@ -55,7 +43,3 @@
         </MudContainer>
     </MudMainContent>
 </MudLayout>
-
-<MudThemeProvider/>
-<MudDialogProvider/>
-<MudSnackbarProvider/>
