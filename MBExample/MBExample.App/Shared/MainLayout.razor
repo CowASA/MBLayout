@@ -1,75 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
+
 <MudLayout>
     <MudAppBar Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
         <MudSpacer />
-@*        <LoginDisplay />
-        <LanguageSwitcher />*@
-        <MudIconButton Icon="@Icons.Filled.Lightbulb" Color="Color.Default" OnClick="ChangeThemeAsync"/>
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
-        <MudDrawerHeader>
-            <MudText Typo="Typo.h5" Class="mt-1">Application</MudText>
-        </MudDrawerHeader>
-        <NavMenu />
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+       <NavMenu />
     </MudDrawer>
     <MudMainContent>
-        <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
-@*            <MudGrid>
-                @if (_box1Visible)
-                {
-                    <MudItem xs="12" sm="6" md="4">
-                        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px; width: 200px;">
-                            <MudText Color=Color.Success>Box 1</MudText>
-                        </MudPaper>
-                    </MudItem>
-                }
-
-                <MudItem xs="12" sm="6" md="4">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                        <MudText Color=Color.Error>Box 2</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="12" sm="12" md="4">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                        <MudText Color=Color.Warning>Box 3</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="12" sm="6">
-                    <MudGrid>
-                        <MudItem xs="12">
-                            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                                <MudButton Variant="Variant.Outlined" OnClick=ToggleBox>Toggle Box 1</MudButton>
-                            </MudPaper>
-                        </MudItem>
-                        <MudItem xs="12">
-                            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                                <MudButton Variant="Variant.Outlined" Color=Color.Secondary>In the Mud Grid</MudButton>
-                            </MudPaper>
-                        </MudItem>
-                    </MudGrid>
-                </MudItem>
-                <MudItem xs="12" sm="6">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
-                        <MudText Color=Color.Dark>Not in the mud grid</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="12" sm="6" md="4">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-                <MudItem xs="12" sm="6" md="4">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
-                        <MudButton Variant="Variant.Filled">Default</MudButton>
-                        </MudPaper>
-            
-                </MudItem>
-                <MudItem xs="12" sm="12" md="4">
-                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
-                </MudItem>
-            </MudGrid>*@
-        </MudContainer>
+        @Body
     </MudMainContent>
 </MudLayout>
 

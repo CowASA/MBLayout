@@ -3,43 +3,6 @@
 <MudLayout>
    
     <MudMainContent>
-        @*Container for wallet address text box*@
-        <MudContainer Class="mt-4" MaxWidth="MaxWidth.Medium">
-            <MudGrid Spacing="2">
-                    <MudTextField Class="mr-4" T="string" Counter="58" MaxLength="58" HelperText="Algorand wallet addresses are 58 characters" 
-                        Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))" 
-                        Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" 
-                    />
-                <div class="col-10">
-                    <MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small">Submit</MudButton>
-                </div>
-            </MudGrid>
-        </MudContainer>
-        <MudContainer Class="mt-4 px-8" MaxWidth="MaxWidth.False">
-            <MudGrid Spacing="2">
-                <MudItem>
-                    <MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-                        <MudText Color=Color.Success>Box 1</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem>
-                    <MudPaper Elevation="2" Height="300px" Width="300px">
-                        <MudText Color=Color.Success>Box 2</MudText>
-                    </MudPaper>
-                </MudItem>
-            </MudGrid>
-            <MudGrid Spacing="2" Class="mt-2">
-                <MudItem>
-                    <MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-                        <MudText Color=Color.Success>Box 3</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem>
-                    <MudPaper Elevation="2" Height="300px" Width="300px">
-                        <MudText Color=Color.Success>Box 4</MudText>
-                    </MudPaper>
-                </MudItem>
-            </MudGrid>
-        </MudContainer>
+      
     </MudMainContent>
 </MudLayout>
