@@ -22,6 +22,14 @@ namespace MBExample.App.Pages
         [Parameter]
         public string Id { get; set; }
 
+        public string TextInputLabel { get; set; } = "Enter an Algorand wallet address...";
 
+        private IEnumerable<string> MaxCharacters(string ch)
+        {
+            if (!string.IsNullOrEmpty(ch) && 58 < ch?.Length)
+            {
+                yield return "Wallet addresses are 58 characters";
+            }
+        }
     }
 }
