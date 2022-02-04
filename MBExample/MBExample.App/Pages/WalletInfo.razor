@@ -1,21 +1,33 @@
 ﻿@page "/wallet"
-@page "/wallet/{Id}"
+@page "/wallet/{AccountId}"
+
+<EditForm Model="_account" OnValidSubmit="FetchWalletInfoAsync">
 
 @*Container for wallet address text box*@
 <MudContainer Class="mt-4" MaxWidth="MaxWidth.ExtraLarge">
 	<MudGrid Spacing="2">
 		<MudTextField Class="mr-4" T="string" Counter="58" MaxLength="58" HelperText="Algorand wallet addresses are 58 characters"
 					  Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
-					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" />
+					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@AccountId" />
 		<div class="col-10">
-			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small">Submit</MudButton>
+			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="RedirectToAccountInfo">Submit</MudButton>
 		</div>
 	</MudGrid>
 	<MudGrid Spacing="2">
 		<MudItem>
-			<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-				<MudText Color=Color.Success>Box 1</MudText>
-			</MudPaper>
+			@if (_isBusy)
+			{
+				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
+					<MudText Color=Color.Success>Working on it...</MudText>
+				</MudPaper>
+			}
+			else
+			{
+				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
+					<MudText Color=Color.Success>@AssetCount</MudText>
+				</MudPaper>
+			}
+
 		</MudItem>
 		<MudItem>
 			<MudPaper Elevation="2" Height="300px" Width="300px">
@@ -36,5 +48,5 @@
 		</MudItem>
 	</MudGrid>
 </MudContainer>
-
+</EditForm>
 
