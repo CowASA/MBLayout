@@ -15,7 +15,7 @@ namespace MBExample.App.Shared.Models
     public class Account
     {
         public string address { get; set; }
-        public int amount { get; set; }
+        public ulong amount { get; set; }
         public int amountwithoutpendingrewards { get; set; }
         public AppsLocalState[] appslocalstate { get; set; }
         public AppsTotalSchema appstotalschema { get; set; }

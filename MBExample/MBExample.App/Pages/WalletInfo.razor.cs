@@ -67,6 +67,7 @@ namespace MBExample.App.Pages
                         AssetCount = _account.account.assets.Count().ToString();
                     }
                     Console.WriteLine($"Asset Count: {AssetCount}");
+                    _isBusy = false;
 
                     StateHasChanged();
                 }
