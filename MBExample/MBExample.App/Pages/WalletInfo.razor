@@ -23,9 +23,18 @@
 			}
 			else
 			{
-				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-					<MudText Color=Color.Success>@AssetCount</MudText>
-				</MudPaper>
+				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px">
+					<MudCardContent>
+						<div class="center">
+						<MudText Align="Align.Justify" Color=Color.Success Class="flex-column p-5">@AssetCount</MudText>
+						</div>
+					</MudCardContent>
+				</MudCard>
+@*				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
+					<MudContainer Class="align-bottom" MaxWidth="MaxWidth.Medium">
+						<MudText Color=Color.Success>@AssetCount</MudText>
+					</MudContainer>
+				</MudPaper>*@
 			}
 
 		</MudItem>
