@@ -17,15 +17,17 @@
 		<MudItem>
 			@if (_isBusy)
 			{
-				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-					<MudText Color=Color.Success>Working on it...</MudText>
-				</MudPaper>
+				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
+					<MudCardContent>
+						<MudText Class="font-size: 28px" Color=Color.Warning>Calculating...</MudText>
+					</MudCardContent>
+				</MudCard>
 			}
 			else
 			{
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px">
+				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
 					<MudCardContent>
-						<MudText Align="Align.Justify" Color=Color.Success>@AssetCount</MudText>
+						<MudText Color=Color.Success>@AssetCount</MudText>
 					</MudCardContent>
 				</MudCard>
 @*				<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
