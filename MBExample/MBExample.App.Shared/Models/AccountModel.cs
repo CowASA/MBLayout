@@ -82,7 +82,7 @@ namespace MBExample.App.Shared.Models
 
     public class Asset
     {
-        public int amount { get; set; }
+        public ulong amount { get; set; }
         public int assetid { get; set; }
         public string creator { get; set; }
         public bool isfrozen { get; set; }
