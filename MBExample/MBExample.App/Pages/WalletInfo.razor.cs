@@ -10,6 +10,9 @@ namespace MBExample.App.Pages
     {
         [Inject]
         public IAccountInfo AccountInfo { get; set; }
+        
+        [Inject]
+        public IAssetInfo AccountAssetInfo { get; set; }
 
         [Inject]
         public NavigationManager Navigation { get; set; }
@@ -20,10 +23,13 @@ namespace MBExample.App.Pages
         [Parameter]
         public string AccountId { get; set; }
 
+        private List<AssetInfo> _assetsList = new List<AssetInfo>();
+        private List<WalletAssetInfoModel> _walletAssets = new List<WalletAssetInfoModel>();
         public string? AssetCount { get; set; }
 
         private AccountInfo? _account = new AccountInfo();
-        private bool _isBusy;
+        private bool _gatheringAccountInfo;
+        private bool _gatheringAssetInfo;
         private string _errorMessage = string.Empty;
         //TO DO Add private list accounts 
 
@@ -44,8 +50,8 @@ namespace MBExample.App.Pages
 
         private async Task FetchWalletInfoAsync()
         {
-            _isBusy = true;
-            Console.WriteLine("In fetch wallet info async");
+            _gatheringAccountInfo = true;
+            
             if (AccountId == null)
 			{
                 Console.WriteLine("Account Id is null");
@@ -57,17 +63,25 @@ namespace MBExample.App.Pages
                     Console.WriteLine($"Account Id we are fetching for is {AccountId}");
                     var result = await AccountInfo.GetAccountInfoByIdAsync(AccountId);
                     _account = result;
+
+                    _gatheringAssetInfo = true;
+                    Console.WriteLine($"Gathering asset info: {_gatheringAssetInfo}");
                     foreach (var a in _account.account.assets)
                     {
+                        
                         Console.WriteLine($"Asset ID: {a.assetid}");
+                        Console.WriteLine("Fetching asset...");
+                        await FetchAssetInfoAsync(a.assetid.ToString());
                     }
+                    _gatheringAssetInfo = false;
+                    Console.WriteLine($"Gathering asset info: {_gatheringAssetInfo}");
 
                     if (_account != null)
                     {
                         AssetCount = _account.account.assets.Count().ToString();
                     }
                     Console.WriteLine($"Asset Count: {AssetCount}");
-                    _isBusy = false;
+                    _gatheringAccountInfo = false;
 
                     StateHasChanged();
                 }
@@ -84,7 +98,31 @@ namespace MBExample.App.Pages
 
             Console.WriteLine("Leaving Fetch");
 
-            _isBusy = false;
+            _gatheringAccountInfo = false;
+        }
+
+        private async Task FetchAssetInfoAsync(string id)
+        {
+            AssetInfo assetInfo = await AccountAssetInfo.GetAssetInfoByIdAsync(id);
+            //NOT POPULATING BECAUSE ASSET MODEL DIFFERENT THAN ASSET PROPERTIES FROM ACCOUNT MODEL?
+            _assetsList.Add(assetInfo);
+
+            WalletAssetInfoModel walletModel = new WalletAssetInfoModel();
+
+            foreach (var a in assetInfo.assets)
+            {
+                Console.WriteLine($"Index: {a.index}");
+
+                walletModel.Index = a.index.ToString();
+                walletModel.Name = a.assetparams.name.ToString();
+                walletModel.Total = a.assetparams.total.ToString();
+
+
+                // TODO: Make this a component and then bolt the component into the wallet info page
+                //Console.WriteLine($"Name: {a._params.name}");
+
+            }
+            _walletAssets.Add(walletModel);
         }
 
         private async void RedirectToAccountInfo()

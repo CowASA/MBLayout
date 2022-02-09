@@ -16,5 +16,6 @@ builder.Services.AddMudServices();
 builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<IAccountInfo, AccountInfoService>();
+builder.Services.AddScoped<IAssetInfo, AssetInfoService>();
 
 await builder.Build().RunAsync();

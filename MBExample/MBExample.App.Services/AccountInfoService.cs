@@ -1,14 +1,11 @@
-﻿using MBExample.App.Services.Exceptions;
-using MBExample.App.Services.Interfaces;
+﻿using MBExample.App.Services.Interfaces;
 using MBExample.App.Shared.Models;
 using MBExample.App.Shared.Responses;
-using System.ComponentModel;
-using System.Net.Http.Json;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace MBExample.App.Services
 {
-	public class AccountInfoService : IAccountInfo
+    public class AccountInfoService : IAccountInfo
     {
         private readonly HttpClient _httpClient;
 
@@ -24,25 +21,13 @@ namespace MBExample.App.Services
 
         public async Task<AccountInfo> GetAccountInfoByIdAsync(string id)
         {
-            var response = await _httpClient.GetAsync($"https://algoindexer.algoexplorerapi.io/v2/accounts/{id}");
+            var response = await _httpClient.GetStringAsync($"https://algoindexer.algoexplorerapi.io/v2/accounts/{id}");
 
-            var options = new JsonSerializerOptions()
-            {
-                NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString |
-                System.Text.Json.Serialization.JsonNumberHandling.WriteAsString
-            };
+            var accountInfo = JsonConvert.DeserializeObject<AccountInfo>(response);
 
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadFromJsonAsync<AccountInfo>(options);
-
-                return result;
-            }
-            else
-            {
-                var errorResponse = await response.Content.ReadFromJsonAsync<ApiErrorResponse>();
-                throw new ApiException(errorResponse, response.StatusCode);
-            }
+            return accountInfo;
+            
+            //TODO: Catch errors
         }
     }
 }
