@@ -129,7 +129,8 @@ namespace MBExample.App.Shared.Models
         public int createdatround { get; set; }
         [JsonProperty(PropertyName = "deleted-at-round")]
         public int deletedatround { get; set; }
-        public AccountParams _params { get; set; }
+        [JsonProperty(PropertyName = "params")]
+        public AccountParams createdappsparams { get; set; }
     }
 
     public class AccountParams
@@ -186,7 +187,8 @@ namespace MBExample.App.Shared.Models
         public int createdatround { get; set; }
         [JsonProperty(PropertyName = "destroyed-at-round")]
         public int destroyedatround { get; set; }
-        public AccountParams1 _params { get; set; }
+        [JsonProperty(PropertyName = "params")]
+        public AccountParams1 createdassetsparams { get; set; }
     }
 
     public class AccountParams1
