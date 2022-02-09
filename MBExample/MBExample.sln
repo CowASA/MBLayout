@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBExample.App", "MBExample.App\MBExample.App.csproj", "{99321977-E1F7-4F58-B4E9-FDFAA0637304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBExample.App.Services", "MBExample.App.Services\MBExample.App.Services.csproj", "{19BC851D-2A7B-483B-92D6-D54D87C72FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBExample.App.Services", "MBExample.App.Services\MBExample.App.Services.csproj", "{19BC851D-2A7B-483B-92D6-D54D87C72FA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBExample.App.Shared", "MBExample.App.Shared\MBExample.App.Shared.csproj", "{81E71578-FE69-448A-85CF-80382A949372}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBExample.App.Shared", "MBExample.App.Shared\MBExample.App.Shared.csproj", "{81E71578-FE69-448A-85CF-80382A949372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
