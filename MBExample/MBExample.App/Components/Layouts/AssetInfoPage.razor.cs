@@ -43,7 +43,7 @@ namespace MBExample.App.Components.Layouts
         private List<WalletAssetInfoModel> _walletAssets = new List<WalletAssetInfoModel>();
         public string? AssetCount { get; set; }
         private AccountInfo? _account = new AccountInfo();
-        private bool _gatheringAccountInfo;
+        private bool _isBusy;
         private bool _gatheringAssetInfo;
         private string _errorMessage = string.Empty;
 
@@ -54,7 +54,7 @@ namespace MBExample.App.Components.Layouts
 
         private async Task FetchWalletInfoAsync()
         {
-            _gatheringAccountInfo = true;
+            _isBusy = true;
 
             if (AccountId == null)
             {
@@ -85,7 +85,7 @@ namespace MBExample.App.Components.Layouts
                         AssetCount = _account.account.assets.Count().ToString();
                     }
                     Console.WriteLine($"Asset Count: {AssetCount}");
-                    _gatheringAccountInfo = false;
+                    _isBusy = false;
 
                     StateHasChanged();
                 }
@@ -102,7 +102,7 @@ namespace MBExample.App.Components.Layouts
 
             Console.WriteLine("Leaving Fetch");
 
-            _gatheringAccountInfo = false;
+            _isBusy = false;
         }
 
         private async Task FetchAssetInfoAsync(string id)
