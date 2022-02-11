@@ -13,12 +13,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
 using MBExample.App;
 using MBExample.App.Shared;
+using MBExample.App.Components;
+using MBExample.App.Shared.Models;
 using MudBlazor;
 
-namespace MBExample.App.Component
+namespace MBExample.App.Components
 {
-    public partial class AssetsTable
+    public partial class WaitingForEntry
     {
-
     }
 }

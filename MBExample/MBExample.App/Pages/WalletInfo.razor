@@ -1,75 +1,24 @@
 ﻿@page "/wallet"
 @page "/wallet/{AccountId}"
 @using MBExample.App.Shared.Models
-
-<EditForm Model="_account" OnValidSubmit="FetchWalletInfoAsync">
+@using MBExample.App.Components
+@using MBExample.App.Components.Layouts
 
 @*Container for wallet address text box*@
-<MudContainer Class="mt-4" MaxWidth="MaxWidth.ExtraLarge">
+<MudContainer Class="mt-16" MaxWidth="MaxWidth.False">
+
 	<MudGrid Spacing="2">
 		<MudTextField Class="mr-4" T="string" Counter="58" MaxLength="58" HelperText="Algorand wallet addresses are 58 characters"
 					  Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
-					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@AccountId" />
+					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@AccountId"/>
 		<div class="col-10">
-			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="RedirectToAccountInfo">Submit</MudButton>
+			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="SubmitInfo">Submit</MudButton>
 		</div>
 	</MudGrid>
-	<MudGrid Spacing="2">
-		<MudItem>
-			@if (_gatheringAccountInfo)
-			{
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						<MudText Color=Color.Warning>Calculating...</MudText>
-					</MudCardContent>
-				</MudCard>
-			}
-			else
-			{
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						<MudText Color=Color.Success>@AssetCount</MudText>
-					</MudCardContent>
-				</MudCard>
-			}
 
-		</MudItem>
-		<MudItem>
-			@if (_gatheringAssetInfo)
-			{
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						<MudText Color=Color.Warning>Calculating assets...</MudText>
-					</MudCardContent>
-				</MudCard>
-			}
-			else
-			{
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						@foreach(var w in _walletAssets)
-						{
-							<MudText Color=Color.Success>@w.Index</MudText>
-							<MudText Color=Color.Success>@w.Name</MudText>
-							<MudText Color=Color.Success>@w.Total</MudText>
-						}
-					</MudCardContent>
-				</MudCard>
-			}
-		</MudItem>
-	</MudGrid>
-	<MudGrid Spacing="2" Class="mt-2">
-		<MudItem>
-			<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-				<MudText Color=Color.Success>Box 3</MudText>
-			</MudPaper>
-		</MudItem>
-		<MudItem>
-			<MudPaper Elevation="2" Height="300px" Width="300px">
-				<MudText Color=Color.Success>Box 4</MudText>
-			</MudPaper>
-		</MudItem>
-	</MudGrid>
+	@if (_submit)
+	{
+		<AssetInfoPage AccountId="@AccountId"/>
+	}
+
 </MudContainer>
-</EditForm>
-
