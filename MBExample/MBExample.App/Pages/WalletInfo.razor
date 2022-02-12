@@ -12,57 +12,13 @@
 					  Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
 					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@AccountId"/>
 		<div class="col-10">
-			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="OnSubmit">Submit</MudButton>
+			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="SubmitInfo">Submit</MudButton>
 		</div>
 	</MudGrid>
-@*
+
 	@if (_submit)
 	{
 		<AssetInfoPage AccountId="@AccountId"/>
-	}*@
-	@if (_isBusy)
-	{
-		<MudSkeleton />
-		<MudSkeleton SkeletonType="SkeletonType.Circle" Width="50px" Height="50px" />
-		<MudSkeleton SkeletonType="SkeletonType.Rectangle" Width="200px" Height="110px" />
-	}
-	else
-	{
-		<MudGrid Spacing="2">
-			<MudItem xs="12" sm="6" md="4">
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						<AssetInfoPage AccountId="@AccountId"/>
-					</MudCardContent>
-				</MudCard>
-			</MudItem>
-			<MudItem>
-				<MudCard draggable="true" Elevation="2" Outlined="true" Height="300px" Width="300px" Class="d-flex justify-center align-center">
-					<MudCardContent>
-						@*Get verified information from TinyChart API*@
-					</MudCardContent>
-				</MudCard>
-			</MudItem>
-			<MudItem>
-				<MudGrid Spacing="2">
-					<MudItem xs="12">
-						<MudPaper draggable="true" Elevation="2" Height="300px" Width="300px">
-							<MudText Color=Color.Success>Box 3</MudText>
-						</MudPaper>
-					</MudItem>
-					<MudItem xs="12">
-						<MudPaper Elevation="2" Height="300px" Width="300px">
-							<MudText Color=Color.Success>Box 4</MudText>
-						</MudPaper>
-					</MudItem>
-				</MudGrid>
-			</MudItem>
-			<MudItem>
-				<MudCard Elevation="2" Outlined="true" Class="d-flex oi-justify-center align-center">
-					<AssetsTable Assets="_walletAssets"/>
-				</MudCard>
-			</MudItem>
-		</MudGrid>	
 	}
 
 </MudContainer>

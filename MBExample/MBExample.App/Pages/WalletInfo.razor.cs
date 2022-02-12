@@ -8,9 +8,6 @@ namespace MBExample.App.Pages
 {
     public partial class WalletInfo
     {
-        [Inject]
-        public NavigationManager Navigation { get; set; }
-
         [Parameter]
         public string? AccountId { get; set; }
 
@@ -19,7 +16,6 @@ namespace MBExample.App.Pages
         public string TextInputLabel { get; set; } = "Enter an Algorand wallet address...";
 
         private bool _submit = false;
-        private bool _isBusy;
 
         private IEnumerable<string> MaxCharacters(string ch)
         {
@@ -29,15 +25,11 @@ namespace MBExample.App.Pages
             }
         }
 
-        private async void OnSubmit()
+        private async void SubmitInfo()
         {
             _submit = true;
-            await InvokeAsync(StateHasChanged);
-            Console.WriteLine($"Redirection for {AccountId}");
-            Navigation.NavigateTo($"/wallet/{AccountId}");
-            Console.WriteLine("Fetching again");
-            //await FetchWalletInfoAsync();
-            //StateHasChanged();
+
+            StateHasChanged();
         }
     }
 }
