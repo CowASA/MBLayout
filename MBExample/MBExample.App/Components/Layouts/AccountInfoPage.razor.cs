@@ -1,27 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
-using System.Net.Http;
-using System.Net.Http.Json;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Components.Routing;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.Web.Virtualization;
-using Microsoft.AspNetCore.Components.WebAssembly.Http;
-using Microsoft.JSInterop;
-using MBExample.App;
-using MBExample.App.Shared;
-using MBExample.App.Components;
-using MBExample.App.Shared.Models;
-using MudBlazor;
-using MBExample.App.Services.Interfaces;
 using MBExample.App.Services.Exceptions;
+using MBExample.App.Services.Interfaces;
+using MBExample.App.Shared;
+using MBExample.App.Shared.Models;
+using Microsoft.AspNetCore.Components;
 
-namespace MBExample.App.Components.Layouts
+namespace MBExample.App.Components
 {
-    public partial class AssetInfoPage
+    public partial class AccountInfoPage
     {
         [Inject]
         public IAccountInfo AccountInfo { get; set; }
@@ -127,14 +112,6 @@ namespace MBExample.App.Components.Layouts
 
             }
             _walletAssets.Add(walletModel);
-        }
-
-        private async void RedirectToAccountInfo()
-        {
-            Console.WriteLine($"Redirection for {AccountId}");
-            Navigation.NavigateTo($"/wallet/{AccountId}");
-            Console.WriteLine("Fetching again");
-            await FetchWalletInfoAsync(AccountId);
         }
     }
 }

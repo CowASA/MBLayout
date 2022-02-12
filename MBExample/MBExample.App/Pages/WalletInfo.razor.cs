@@ -8,6 +8,12 @@ namespace MBExample.App.Pages
 {
     public partial class WalletInfo
     {
+        [Inject]
+        public NavigationManager Navigation { get; set; }
+
+        [CascadingParameter]
+        public Error Error { get; set; }
+
         [Parameter]
         public string? AccountId { get; set; }
 
@@ -15,7 +21,9 @@ namespace MBExample.App.Pages
 
         public string TextInputLabel { get; set; } = "Enter an Algorand wallet address...";
 
+        private bool _isBusy = false;
         private bool _submit = false;
+        private string _errorMessage = string.Empty;
 
         private IEnumerable<string> MaxCharacters(string ch)
         {

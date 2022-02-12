@@ -7,18 +7,22 @@
 @*Container for wallet address text box*@
 <MudContainer Class="mt-16" MaxWidth="MaxWidth.False">
 
+	@*TODO: Make Textbox a component*@
 	<MudGrid Spacing="2">
 		<MudTextField Class="mr-4" T="string" Counter="58" MaxLength="58" HelperText="Algorand wallet addresses are 58 characters"
-					  Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
+					  Immediate="false" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
 					  Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@AccountId"/>
 		<div class="col-10">
 			<MudButton Class="mt-2" Variant="Variant.Filled" Size="Size.Small" OnClick="SubmitInfo">Submit</MudButton>
 		</div>
 	</MudGrid>
-
-	@if (_submit)
-	{
-		<AssetInfoPage AccountId="@AccountId"/>
-	}
-
 </MudContainer>
+
+@if (AccountId is not null)
+{
+	<AccountInfoPage AccountId="@AccountId"/>
+}
+else
+{
+	<WaitingForEntry />
+}

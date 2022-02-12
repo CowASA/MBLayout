@@ -1,0 +1,5 @@
+﻿@namespace MBExample.App.Components
+
+<MudTextField Class="mr-4" T="string" Counter="@Counter" MaxLength="@MaxLength" HelperText="@HelperText"
+				Immediate="true" Validation="@(new Func<string, IEnumerable<string>>(MaxCharacters))"
+				Label="@TextInputLabel" Variant="Variant.Outlined" Margin="Margin.Dense" @bind-Value="@BoundItem"/>
