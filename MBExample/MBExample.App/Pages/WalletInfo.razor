@@ -18,7 +18,7 @@
 	</MudGrid>
 </MudContainer>
 
-@if (AccountId is not null)
+@*@if (AccountId is not null)
 {
 	<AccountInfoPage AccountId="@AccountId"/>
 }
@@ -27,4 +27,62 @@ else
 	<MudContainer Class="mt-16" MaxWidth="MaxWidth.False">
 		<WaitingForEntry />
 	</MudContainer>
-}
+}*@
+
+<MudGrid>
+    <MudItem xs="12">
+        <MudSlider Min="1" Max="@_maxPapers" Immediate="true" Step="1" @bind-Value="papers"></MudSlider>
+    </MudItem>
+
+    <MudItem xs="12">
+        <MudSelect Label="Justify" T="Justify" @bind-Value="justification">
+            <MudSelectItem Value="Justify.FlexStart">Flex Start</MudSelectItem>
+            <MudSelectItem Value="Justify.FlexEnd">Flex End</MudSelectItem>
+            <MudSelectItem Value="Justify.Center">Center</MudSelectItem>
+            <MudSelectItem Value="Justify.SpaceAround">Space Around</MudSelectItem>
+            <MudSelectItem Value="Justify.SpaceBetween">Space Between</MudSelectItem>
+            <MudSelectItem Value="Justify.SpaceEvenly">Space Evenly</MudSelectItem>
+        </MudSelect>
+    </MudItem>
+
+    <MudItem xs="12">
+        <MudGrid Justify="justification">
+            @for (int i = 0; i < papers; i++)
+            {
+                int localindex = i;
+                
+                <MudItem xs="@breaks[localindex]">
+                    @*<MudCard Class="d-flex flex-column align-center justify-center mud-width-full py-8">*@
+                    <MudCard Style="@height[localindex]" Outlined="true">
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudSelect Label="@Words" T="string" @bind-Value="Words">
+                                    <MudSelectItem Value="Words">Asset Count</MudSelectItem>
+                                    <MudSelectItem Value="Things">Recent Buys</MudSelectItem>
+                                </MudSelect>
+                            </CardHeaderContent>
+                            <CardHeaderActions>
+                                <MudItem>
+                                    <MudIconButton Icon="@Icons.Material.Outlined.KeyboardArrowUp" Color="Color.Default" OnClick="(()=>UpdateHeight(localindex,-20))" Size="Size.Small"/>
+                                    <MudIconButton Icon="@Icons.Material.Outlined.KeyboardArrowDown" Color="Color.Default" OnClick="(()=>UpdateHeight(localindex,20))" Size="Size.Small"/>
+                                </MudItem>
+                                <MudItem>
+                                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft" Color="Color.Default" OnClick="(()=>UpdateBreaks(localindex,-1))" Size="Size.Small"/>
+                                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" OnClick="(()=>UpdateBreaks(localindex,1))" Size="Size.Small"/>                               
+                                </MudItem>
+                            </CardHeaderActions>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <MudText>This day everything happend.</MudText>
+                            <MudText Typo="Typo.body2">The quick, brown fox jumps over a lazy dog.</MudText>
+                            <MudCardActions>
+                                <MudButton Variant="Variant.Text" Color="Color.Primary">Read More</MudButton>
+                            </MudCardActions>
+                        </MudCardContent>
+
+                    </MudCard>
+                </MudItem>
+             }
+        </MudGrid>
+    </MudItem>
+</MudGrid>
