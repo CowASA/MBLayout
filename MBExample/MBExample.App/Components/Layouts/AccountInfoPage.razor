@@ -1,15 +1,32 @@
 ﻿@namespace MBExample.App.Components
+@using MBExample.App.Components.Layouts
 
 <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="mt-2">
-    <MudGrid>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 200px; width: 200px;">@AssetCount</MudPaper>
-        </MudItem>
-        <MudItem xs="12" sm="6" md="4">
-            <MudPaper Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 200px;">Box 2</MudPaper>
-        </MudItem>
+    <MudItem xs="12" sm="6" md="4">
+    <MudGrid Spacing="2">
+        @*<MudItem xs="12" sm="6" md="4">*@
+            @if(AssetCount == null || AssetCount == "")
+            {       
+                <MudPaper xs="12" sm="6" md="4" Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 300px; width: 300px; padding: 75px;">
+                    <WaitingForEntry />
+                </MudPaper>
+
+            }
+            else
+            {
+                <MudPaper xs="12" sm="6" md="4" Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 300px; width: 300px; padding: 75px;">
+                    <MudText Typo="Typo.h6" Color="Color.Secondary">
+                        @AssetCount  
+                    </MudText>                
+                </MudPaper>
+            }
+            
+        @*</MudItem>*@
+       @* <MudItem xs="12" sm="6" md="4">*@
+            <MudPaper Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 300px; width: 300px; padding: 75px;">Box 2</MudPaper>
+        @*</MudItem>*@
         <MudItem xs="12" sm="12" md="4">
-            <MudPaper Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 200px;">Box 3</MudPaper>
+            <MudPaper Elevation="2" Class="pa-4 d-flex justify-center align-center" Style="height: 300px; width: 300px;">Box 3</MudPaper>
         </MudItem>
         <MudItem xs="12" sm="6">
             <MudGrid>
@@ -48,4 +65,5 @@
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">Box 9</MudPaper>
         </MudItem>
     </MudGrid>
+    </MudItem>
 </MudContainer>
