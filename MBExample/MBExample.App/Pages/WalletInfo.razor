@@ -4,6 +4,21 @@
 @using MBExample.App.Components
 @using MBExample.App.Components.Layouts
 
+<style>
+    .grid-layout {
+        /*display arrangement*/
+        display: grid;
+        height: 100vh;
+        grid-template-columns: 20px 20px 20px;
+        grid-auto-rows: 20px 20px 20px;
+        justify-self: center;
+    }
+    .arrow {
+        place-self: center;
+    }
+</style>
+
+
 @*Container for wallet address text box*@
 <MudContainer Class="mt-16" MaxWidth="MaxWidth.False">
 
@@ -29,9 +44,9 @@ else
 	</MudContainer>
 }*@
 
-<MudGrid>
+<MudGrid Class="pa-2">
     <MudItem xs="12">
-        <MudSlider Min="1" Max="@_maxPapers" Immediate="true" Step="1" @bind-Value="papers"></MudSlider>
+        <MudSlider Min="1" Max="@_maxCards" Immediate="true" Step="1" @bind-Value="cards"></MudSlider>
     </MudItem>
 
     <MudItem xs="12">
@@ -47,37 +62,39 @@ else
 
     <MudItem xs="12">
         <MudGrid Justify="justification">
-            @for (int i = 0; i < papers; i++)
+            @for (int i = 0; i < cards; i++)
             {
                 int localindex = i;
                 
-                <MudItem xs="@breaks[localindex]">
-                    @*<MudCard Class="d-flex flex-column align-center justify-center mud-width-full py-8">*@
-                    <MudCard Style="@height[localindex]" Outlined="true">
+                <MudItem xs="@breaks[localindex]" Style="@heights[localindex]" >
+                    <MudCard Style="height: 100%; overflow-y: scroll; padding: 10px" Outlined="true">
                         <MudCardHeader>
                             <CardHeaderContent>
+
                                 <MudSelect Label="@Words" T="string" @bind-Value="Words">
                                     <MudSelectItem Value="Words">Asset Count</MudSelectItem>
                                     <MudSelectItem Value="Things">Recent Buys</MudSelectItem>
                                 </MudSelect>
+
                             </CardHeaderContent>
                             <CardHeaderActions>
                                 <MudItem>
-                                    <MudIconButton Icon="@Icons.Material.Outlined.KeyboardArrowUp" Color="Color.Default" OnClick="(()=>UpdateHeight(localindex,-20))" Size="Size.Small"/>
-                                    <MudIconButton Icon="@Icons.Material.Outlined.KeyboardArrowDown" Color="Color.Default" OnClick="(()=>UpdateHeight(localindex,20))" Size="Size.Small"/>
-                                </MudItem>
-                                <MudItem>
-                                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft" Color="Color.Default" OnClick="(()=>UpdateBreaks(localindex,-1))" Size="Size.Small"/>
-                                    <MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" OnClick="(()=>UpdateBreaks(localindex,1))" Size="Size.Small"/>                               
+                                    <div class="grid-layout">
+                                        <div></div>
+                                        <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowUp" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,-20))"/></div>  
+                                        <div></div>
+                                        <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateBreaks(localindex,-1))"/></div>  
+                                        <div></div>
+                                        <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateBreaks(localindex,1))"/></div>  
+                                        <div></div>  
+                                        <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,20))"/></div>  
+                                        <div></div>  
+                                    </div>
                                 </MudItem>
                             </CardHeaderActions>
                         </MudCardHeader>
                         <MudCardContent>
-                            <MudText>This day everything happend.</MudText>
-                            <MudText Typo="Typo.body2">The quick, brown fox jumps over a lazy dog.</MudText>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Read More</MudButton>
-                            </MudCardActions>
+                                <DynamicComponent Type="@components[localindex]" />
                         </MudCardContent>
 
                     </MudCard>

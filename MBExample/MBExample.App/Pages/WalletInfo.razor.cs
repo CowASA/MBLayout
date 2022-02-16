@@ -30,15 +30,13 @@ namespace MBExample.App.Pages
         int _minBreaks = 2;
         int _maxHeight = 600;
         int _minHeight = 200;
-        int _maxPapers = 12;
-        int _papers = 7;
-        int papers { get { return _papers; } set { UpdatePapers(value); } }
+        int _maxCards = 12;
+        int _cards = 7;
+        int cards { get { return _cards; } set { UpdatePapers(value); } }
 
         int[] breaks = new int[7] { 3, 4, 2, 3, 3, 2, 4 };
-
-        string[] height = new string[7] { "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;" };
-
-        //int[] height = new int[7] { 100, 200, 400, 300, 300, 800, 500 };
+        string[] heights = new string[7] { "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;" };
+        Type[] components = new Type[7] { typeof(Counter), typeof(Counter), typeof(FetchData), typeof(FetchData), typeof(Counter), typeof(FetchData), typeof(Counter) };
 
         Justify justification = Justify.FlexStart;
 
@@ -47,27 +45,27 @@ namespace MBExample.App.Pages
 
         void UpdatePapers(int value)
         {
-            if (value <= _maxPapers && value >= 1)
+            if (value <= _maxCards && value >= 1)
             {
-                int[] newbreaks = Enumerable.Repeat(3, value).ToArray();
-                string[] newheight = Enumerable.Repeat("height: 200px;", value).ToArray();
+                int[] newBreaks = Enumerable.Repeat(3, value).ToArray();
+                string[] newHeight = Enumerable.Repeat("height: 200px;", value).ToArray();
 
-                for (int i = 0; i < newbreaks.Length; i++)
+                for (int i = 0; i < newBreaks.Length; i++)
                 {
                     if (i < breaks.Length)
                     {
-                        newbreaks[i] = breaks[i];
+                        newBreaks[i] = breaks[i];
                     }
-                    if (i < height.Length)
+                    if (i < heights.Length)
                     {
-                        newheight[i] = height[i];
+                        newHeight[i] = heights[i];
                     }
                 }
 
-                breaks = newbreaks;
-                height = newheight;
+                breaks = newBreaks;
+                heights = newHeight;
 
-                _papers = value;
+                _cards = value;
 
                 StateHasChanged();
             }
@@ -75,52 +73,52 @@ namespace MBExample.App.Pages
 
         void UpdateBreaks(int index, int changeamount)
         {
-            List<int> newbreaks = breaks.ToList();
+            List<int> newBreaks = breaks.ToList();
 
-            newbreaks[index] = newbreaks[index] += changeamount;
+            newBreaks[index] = newBreaks[index] += changeamount;
 
-            if (newbreaks[index] <= _minBreaks)
+            if (newBreaks[index] <= _minBreaks)
             {
-                newbreaks[index] = _minBreaks;
+                newBreaks[index] = _minBreaks;
             }
-            else if (newbreaks[index] >= _maxBreaks)
+            else if (newBreaks[index] >= _maxBreaks)
             {
-                newbreaks[index] = _maxBreaks;
+                newBreaks[index] = _maxBreaks;
             }
 
-            breaks = newbreaks.ToArray();
+            breaks = newBreaks.ToArray();
 
             StateHasChanged();
         }
 
-        void UpdateHeight(int index, int changeamount)
+        void UpdateHeight(int index, int changeAmount)
         {
-            List<string> newheight = height.ToList();
+            List<string> newHeight = heights.ToList();
 
-            string splitHeight = newheight[index].Split(" ")[1].Replace("px;", "");
+            string splitHeight = newHeight[index].Split(" ")[1].Replace("px;", "");
 
             bool conversion = int.TryParse(splitHeight, out int number);
 
             if (conversion)
             {
-                int cardheight = number + changeamount;
+                int cardHeight = number + changeAmount;
 
-                if (cardheight >= _maxHeight)
+                if (cardHeight >= _maxHeight)
                 {
-                    cardheight = _maxHeight;
+                    cardHeight = _maxHeight;
                 }
-                else if (cardheight <= _minHeight)
+                else if (cardHeight <= _minHeight)
                 {
-                    cardheight = _minHeight;
+                    cardHeight = _minHeight;
                 }
                 else
                 {
-                    cardheight = number + changeamount;
+                    cardHeight = number + changeAmount;
                 }
-                newheight[index] = "height: " + cardheight.ToString() + "px;";
+                newHeight[index] = "height: " + cardHeight.ToString() + "px;";
             }
 
-            height = newheight.ToArray();
+            heights = newHeight.ToArray();
 
             StateHasChanged();
         }
