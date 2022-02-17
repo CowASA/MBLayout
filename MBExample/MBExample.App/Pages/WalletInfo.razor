@@ -16,6 +16,9 @@
     .arrow {
         place-self: center;
     }
+    .dot {
+        place-self: center;
+    }
 </style>
 
 
@@ -84,7 +87,7 @@ else
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowUp" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,-20))"/></div>  
                                         <div></div>
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowLeft" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateBreaks(localindex,-1))"/></div>  
-                                        <div></div>
+                                        <div class="dot"><MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Error" Size="Size.Small" /></div>
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowRight" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateBreaks(localindex,1))"/></div>  
                                         <div></div>  
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,20))"/></div>  
