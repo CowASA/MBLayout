@@ -35,7 +35,7 @@ namespace MBExample.App.Pages
         int cards { get { return _cards; } set { UpdatePapers(value); } }
 
         int[] breaks = new int[7] { 3, 4, 2, 3, 3, 2, 4 };
-        string[] heights = new string[7] { "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;", "height: 200px;" };
+        string[] heights = new string[7] { "height: 300px;", "height: 300px;", "height: 300px;", "height: 300px;", "height: 300px;", "height: 300px;", "height: 300px;" };
         Type[] components = new Type[7] { typeof(Counter), typeof(Counter), typeof(FetchData), typeof(FetchData), typeof(Counter), typeof(FetchData), typeof(Counter) };
 
         Justify justification = Justify.FlexStart;
@@ -48,7 +48,7 @@ namespace MBExample.App.Pages
             if (value <= _maxCards && value >= 1)
             {
                 int[] newBreaks = Enumerable.Repeat(3, value).ToArray();
-                string[] newHeight = Enumerable.Repeat("height: 200px;", value).ToArray();
+                string[] newHeight = Enumerable.Repeat("height: 300px;", value).ToArray();
 
                 for (int i = 0; i < newBreaks.Length; i++)
                 {

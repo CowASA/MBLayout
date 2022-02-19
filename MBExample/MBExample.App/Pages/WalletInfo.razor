@@ -8,7 +8,6 @@
     .grid-layout {
         /*display arrangement*/
         display: grid;
-        height: 100vh;
         grid-template-columns: 20px 20px 20px;
         grid-auto-rows: 20px 20px 20px;
         justify-self: center;
@@ -81,8 +80,7 @@ else
 
                             </CardHeaderContent>
                             <CardHeaderActions>
-                                <MudItem>
-                                    <div class="grid-layout">
+                                <MudItem class="grid-layout">
                                         <div></div>
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowUp" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,-20))"/></div>  
                                         <div></div>
@@ -92,7 +90,6 @@ else
                                         <div></div>  
                                         <div class="arrow"><MudIconButton Icon="@Icons.Material.Filled.KeyboardArrowDown" Color="Color.Default" Size="Size.Small" OnClick="(()=>UpdateHeight(localindex,20))"/></div>  
                                         <div></div>  
-                                    </div>
                                 </MudItem>
                             </CardHeaderActions>
                         </MudCardHeader>
